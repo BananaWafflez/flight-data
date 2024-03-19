@@ -2,7 +2,6 @@
 require('dotenv').config();
 const apiToken = process.env.API_KEY;
 var jsonstring;
-
 async function foo(){
     await fetch('https://airportdb.io/api/v1/airport/KTPA?apiToken=' + apiToken)
     .then(response=>{
@@ -15,10 +14,8 @@ async function foo(){
     })
     .then(data=>{
         jsonstring = data;
-        setData(data);
-    })
-    .then(()=>{
         console.log(jsonstring);
+        return jsonstring;   
     })
     .catch(error=>{
         console.log(error);
@@ -26,10 +23,8 @@ async function foo(){
     
 
 } 
-function setData(data){
-    jsonstring = data;
-}
-foo();
+
+module.exports = foo();
 
 
 
